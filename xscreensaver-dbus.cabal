@@ -1,0 +1,94 @@
+-- Copyright 2020 Google LLC
+--
+-- Licensed under the Apache License, Version 2.0 (the "License"); you may not
+-- use this file except in compliance with the License. You may obtain a copy of
+-- the License at
+--
+--     https://www.apache.org/licenses/LICENSE-2.0
+--
+-- Unless required by applicable law or agreed to in writing, software
+-- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+-- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+-- License for the specific language governing permissions and limitations under
+-- the License.
+
+cabal-version:       >=2.0
+name:                xscreensaver-dbus
+version:             0.1.0
+synopsis:            D-Bus adapter for xscreensaver
+description:
+  xscreensaver-dbus implements the freedesktop.org D-Bus API for screensavers,
+  translating D-Bus calls into appropriate invocations of xscreensaver-command.
+  This allows D-Bus-compliant applications to interface with xscreensaver.
+copyright:           2020 Google LLC
+license:             Apache-2.0
+license-file:        LICENSE
+author:              Benjamin Barenblat
+maintainer:          bbaren@google.com
+category:            System
+build-type:          Simple
+extra-source-files:  CONTRIBUTING.md
+                   , README.md
+                   , xscreensaver-dbus.service
+
+executable xscreensaver-dbus
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  other-extensions:    OverloadedStrings
+  ghc-options:         -Werror
+                       -w
+                       -- Enabled by default
+                       -Wdeprecated-flags -Wwarn=deprecated-flags
+                       -Wdeprecations -Wwarn=deprecations
+                       -Wdodgy-foreign-imports
+                       -Wduplicate-exports
+                       -Wempty-enumerations
+                       -Winline-rule-shadowing
+                       -Wmissing-fields
+                       -Wmissing-methods
+                       -Woverflowed-literals
+                       -Woverlapping-patterns
+                       -Wredundant-constraints
+                       -Wtabs
+                       -Wunrecognised-pragmas -Wwarn=unrecognised-pragmas
+                       -Wunrecognised-warning-flags -Wwarn=unrecognised-warning-flags
+                       -Wunsupported-calling-conventions
+                       -Wunsupported-llvm-version
+                       -Wwarnings-deprecations -Wwarn=warnings-deprecations
+                       -Wwrong-do-bind
+                       -Wsimplifiable-class-constraints
+                       -- Enabled by -W
+                       -Wdodgy-exports
+                       -Wdodgy-imports
+                       -Wincomplete-patterns
+                       -Wunbanged-strict-patterns
+                       -Wunused-binds
+                       -Wunused-foralls
+                       -Wunused-imports
+                       -Wunused-matches
+                       -- Enabled by -Wall
+                       -Wnoncanonical-monad-instances
+                       -Wnoncanonical-monadfail-instances
+                       -Wnoncanonical-monoid-instances
+                       -Wmissing-monadfail-instances
+                       -Wsemigroup
+                       -Whi-shadowing
+                       -Widentities
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wmissing-export-lists
+                       -Wmissing-import-lists
+                       -Wmissing-exported-signatures
+                       -Wmissing-pattern-synonym-signatures
+                       -Wname-shadowing
+                       -threaded
+                       -rtsopts=none
+                       -with-rtsopts=-I0
+                       -with-rtsopts=-V0
+  main-is:             Main.hs
+  other-modules:       Pool
+  build-depends:       base >=4.9 && <4.12
+                     , containers ^>=0.5.7.1
+                     , dbus ^>=1.0.1
+                     , process >=1.4.2 && <1.7
+                     , unix ^>=2.7.2
