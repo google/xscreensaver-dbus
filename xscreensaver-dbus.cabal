@@ -14,7 +14,7 @@
 
 cabal-version:       >=2.0
 name:                xscreensaver-dbus
-version:             0.1.0
+version:             0.1.1
 synopsis:            D-Bus adapter for xscreensaver
 description:
   xscreensaver-dbus implements the freedesktop.org D-Bus API for screensavers,
@@ -68,7 +68,6 @@ executable xscreensaver-dbus
                        -Wunused-matches
                        -- Enabled by -Wall
                        -Wnoncanonical-monad-instances
-                       -Wnoncanonical-monadfail-instances
                        -Wnoncanonical-monoid-instances
                        -Wmissing-monadfail-instances
                        -Wsemigroup
@@ -87,8 +86,8 @@ executable xscreensaver-dbus
                        -with-rtsopts=-V0
   main-is:             Main.hs
   other-modules:       Pool
-  build-depends:       base >=4.9 && <4.12
-                     , containers ^>=0.5.7.1
-                     , dbus ^>=1.0.1
+  build-depends:       base >=4.9 && <4.15
+                     , containers >=0.5.7.1 && <0.7
+                     , dbus >=1.0.1 && <1.3
                      , process >=1.4.2 && <1.7
                      , unix ^>=2.7.2
